@@ -248,10 +248,19 @@ function astar(board, start, destination) {
            $box.classList.remove('start', 'disabled');
            // renderBoard(b, start, end);
          }
+
+         // drawing wall/disabled node 
          if (isSelectingWall) {
            const { x, y } = $box.dataset;
+           if ($box.classList.contains('start') ) {
+            start.node = null;
+           }
+           if ($box.classList.contains('end') ) {
+            start.node = null;
+           }
            $box.classList.remove('start', 'end', 'path');
            $box.classList.toggle('disabled');
+           // toggle wall/path in board 2-dimensional array
            if (b[y][x] === 1) {
              b[y][x] = 0;
            } else if (b[y][x] === 0 || b[y][x] === 2) {
@@ -259,7 +268,6 @@ function astar(board, start, destination) {
            }
          }
  
-         // drawing wall/disabled node 
        });
        $board.append($box);
      }
@@ -352,7 +360,7 @@ function astar(board, start, destination) {
    if (path !== null) {
      let $boxes = document.querySelectorAll('.box');
      // make path 
-     for (let i = 0; i < path.length; i++) {
+     for (let i = 0; i < path.length; i++) { 
        setTimeout(() => {
          const node = path[i];
          generatedBoard[node[1]][node[0]] = 1;
