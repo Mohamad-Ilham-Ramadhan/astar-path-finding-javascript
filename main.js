@@ -166,6 +166,9 @@ function astar(board, start, destination) {
    if (e.target.value > 30) {
      e.target.value = 30;
    }
+   if (e.target.value < 2) {
+      e.target.value = 2;
+   }
  }
  $xInput.addEventListener('input', maxCap);
  $yInput.addEventListener('input', maxCap);
