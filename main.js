@@ -256,7 +256,7 @@ function astar(board, start, destination) {
             start.node = null;
            }
            if ($box.classList.contains('end') ) {
-            start.node = null;
+            end.node = null;
            }
            $box.classList.remove('start', 'end', 'path');
            $box.classList.toggle('disabled');
