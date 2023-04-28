@@ -1,4 +1,4 @@
-# astar-path-finding-javascript
+# a* path-finding javascript
 A maze path-finding app built with JavaScript using A* algorithm
 ![Full App Overview](/images/full-app.png "The App")
 
