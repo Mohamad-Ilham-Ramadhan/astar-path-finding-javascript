@@ -175,7 +175,6 @@ function astar(board, start, destination) {
  $btnGenerate.addEventListener('click', () => {
    x = Number($xInput.value);
    y = Number($yInput.value);
-   console.log(x, y);
    generateBoard();
    renderBoard(generatedBoard, start, end);
    path = null;
@@ -183,7 +182,6 @@ function astar(board, start, destination) {
  
  
  function renderBoard(b, start, end) {
-   console.log('b', b);
    const $board = document.getElementById('board');
    $board.innerHTML = '';
    const yLength = b.length;
@@ -230,7 +228,6 @@ function astar(board, start, destination) {
          const $boxes = document.querySelectorAll('.box');
          if (isSelectingStart) {
            if (start.node !== null) {
-             console.log(start.node[1], xLength, start.node[0]);
              $boxes[start.node[1] * xLength + start.node[0]].classList.remove('start')
            }
            start.node = [x, y];
@@ -253,14 +250,11 @@ function astar(board, start, destination) {
          }
          if (isSelectingWall) {
            const { x, y } = $box.dataset;
-           console.log(x, y, b);
            $box.classList.remove('start', 'end', 'path');
            $box.classList.toggle('disabled');
            if (b[y][x] === 1) {
-             console.log('build a wall');
              b[y][x] = 0;
            } else if (b[y][x] === 0 || b[y][x] === 2) {
-             console.log('remove a wall');
              b[y][x] = 1;
            }
          }
@@ -354,7 +348,6 @@ function astar(board, start, destination) {
    // after doing a* algorithm
    const { board: newBoard, path: p } = astar(generatedBoard, start.node, end.node);
    path = p;
-   console.log('path', path);
    // render the new board 
    if (path !== null) {
      let $boxes = document.querySelectorAll('.box');
@@ -362,13 +355,10 @@ function astar(board, start, destination) {
      for (let i = 0; i < path.length; i++) {
        setTimeout(() => {
          const node = path[i];
-         console.log('node', node, 'x', x)
          generatedBoard[node[1]][node[0]] = 1;
          const boxIndex = node[1] * x + node[0];
          if (!$boxes[boxIndex].classList.contains('start') && !$boxes[boxIndex].classList.contains('end')) {
-           console.log('CAT', boxIndex, $boxes);
            $boxes[boxIndex].classList.add('path');
-           console.log('LAH');
          }
        }, i * 50);
      }
