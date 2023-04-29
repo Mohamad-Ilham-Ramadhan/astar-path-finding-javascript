@@ -163,11 +163,13 @@ renderBoard(generatedBoard, start, end);
 
 
 function maxCap(e) {
+   e.stopPropagation();
    if (e.target.value > 30) {
       e.target.value = 30;
    }
 }
 function minCap(e) {
+   e.stopPropagation();
    if (e.target.value < 2) {
       e.target.value = 2;
    }
@@ -184,6 +186,7 @@ $btnGenerate.addEventListener('click', () => {
    renderBoard(generatedBoard, start, end);
    path = null;
 });
+
 
 
 function renderBoard(b, start, end) {
@@ -384,7 +387,31 @@ $clear.addEventListener('click', () => {
    clearPaths();
 });
 
- // generate board 
+document.body.addEventListener('keypress', (e) => {
+   e.stopPropagation();
+   console.log(e.key);
+   switch (e.key) {
+      case 's':
+      case 'S':
+         $startInfo.click();
+         break;
+      case 'e':
+      case 'E':
+         $endInfo.click();
+         break;
+      case 'w':
+      case 'W':
+         $wallInfo.click();
+         break;
+      case 'Enter':
+         $start.click();
+         break;
+      case 'c':
+      case 'C': 
+         $clear.click();
+         break;
+   }
+});
 
 
 
